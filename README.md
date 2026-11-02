@@ -155,3 +155,25 @@ You must understand every line you submit. We check this with your video and in 
 5. Paste the repository link and the video link in the application form.
 
 We will run `pnpm install && pnpm check && pnpm typecheck && pnpm test` on your repository.
+
+Decisions
+
+1. Store monetary values as integer cents
+
+All monetary values are stored as integer cents instead of floating-point numbers. This avoids rounding errors and ensures accurate bill splitting.
+
+2. Use database constraints
+
+Foreign keys, CHECK constraints and UNIQUE constraints help maintain data integrity and prevent invalid records.
+
+3. Use idempotency keys for payments
+
+The payment endpoint requires an Idempotency-Key header. This prevents duplicate payments when the same request is submitted multiple times.
+
+Technology Stack
+
+- Frontend: React, TypeScript and TanStack Router
+- Backend: Hono and Cloudflare Workers
+- Database: Cloudflare D1 (SQLite)
+- Testing: Vitest
+- Code quality: Biome 
